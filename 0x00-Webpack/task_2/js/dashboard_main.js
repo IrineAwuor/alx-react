@@ -1,19 +1,32 @@
 import '../css/main.css';
-const $ = require('jquery');
-const _ = require('lodash');
+import $ from 'jquery';
+import _ from 'lodash';
 
-let counter = 0;
 
-$("<div id='logo'> </div>").appendTo('body');
-$("<p>Holberton Dashboard</p>").appendTo('body');
-$("<p>Dashboard data for the students</p>").appendTo('body');
-$("<button>Click here to get started</button>").appendTo('body');
-$("<p id='count'></p>").appendTo('body');
-$("<p>Copyright - Holberton School</p>").appendTo('body');
+  // Add the first paragraph
+  $('body').append($('<p>').text('Holberton Dashboard'));
+
+  // Add the second paragraph
+  $('body').append($('<p>').text('Dashboard data for the students'));
+
+  // Add the button
+  const button = $('<button>').text('Click here to get started');
+  $('body').append(button);
+
+  // Add the count paragraph
+  $('body').append($('<p>').attr('id', 'count'));
+
+  // Add the last paragraph
+  $('body').append($('<p>').text('Copyright - Holberton School'));
+
+  let count = 0;
 
 function updateCounter() {
-  counter++;
-  $('#count').html(`${counter} clicks on the button`);
+  count++;
+  $('#count').text(`${count} clicks on the button`);
 }
 
-$("button").on("click", _.debounce(updateCounter, 500));
+// Bind the debounce function to the click event of the button
+  button.on('click', _.debounce(updateCounter, 500));
+
+  $('body').prepend($('<div>').attr('id', 'logo'));
